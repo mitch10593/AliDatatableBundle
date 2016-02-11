@@ -190,10 +190,12 @@ class DoctrineBuilder implements QueryInterface
         if (!is_null($order_field))
         {
             $qb->orderBy($order_field, $request->get('sSortDir_0', 'asc'));
+            $qb->addOrderBy($this->entity_alias.".id", 'asc');
         }
         else
         {
             $qb->resetDQLPart('orderBy');
+            $qb->orderBy($this->entity_alias.".id", "asc");
         }
 
         // extract alias selectors
